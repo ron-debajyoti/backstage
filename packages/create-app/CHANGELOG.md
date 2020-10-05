@@ -1,0 +1,10 @@
+# @backstage/create-app
+
+## 0.2.0
+### Minor Changes
+
+- 7aff112af: The default mount point for backend plugins have been changed to /api. These changes are done in the backend package itself, so it is recommended that you sync up existing backend packages with this new pattern.
+
+### Patch Changes
+
+- 440a17b39: Bump @backstage/catalog-backend and pass the now required UrlReader interface to the plugin
