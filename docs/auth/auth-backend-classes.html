@@ -117,14 +117,16 @@ under the <code>auth.providers.saml</code> key</p>
 <p>For security reasons, validate that the response from the IdP is indeed signed
 by also providing the <code>cert</code> configuration.</p>
 <h3><a class="anchor" aria-hidden="true" id="configuration"></a><a href="#configuration" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Configuration</h3>
-<p>Each authentication provider (except SAML) needs five parameters: an OAuth
-client ID, a client secret, an authorization endpoint, a token endpoint, and an
-app origin. The app origin is the URL at which the frontend of the application
-is hosted, and it is read from the <code>app.baseUrl</code> config. This is required
-because the application opens a popup window to perform the authentication, and
-once the flow is completed, the popup window sends a <code>postMessage</code> to the
-frontend application to indicate the result of the operation. Also this URL is
-used to verify that authentication requests are coming from only this endpoint.</p>
+<p>Each authentication provider (except SAML) needs six parameters: an OAuth client
+ID, a client secret, an authorization endpoint, a token endpoint, an optional
+list of scopes (as a string separated by spaces) that may be required by the
+OAuth2 Server to enable end-user sign-on, and an app origin. The app origin is
+the URL at which the frontend of the application is hosted, and it is read from
+the <code>app.baseUrl</code> config. This is required because the application opens a popup
+window to perform the authentication, and once the flow is completed, the popup
+window sends a <code>postMessage</code> to the frontend application to indicate the result
+of the operation. Also this URL is used to verify that authentication requests
+are coming from only this endpoint.</p>
 <p>These values are configured via the <code>app-config.yaml</code> present in the root of
 your app folder.</p>
 <pre><code class="hljs">auth:
@@ -147,6 +149,18 @@ your app folder.</p>
       developmen<span class="hljs-variable">t:</span>
         clientId:
           $<span class="hljs-keyword">en</span><span class="hljs-variable">v:</span>
+    oauth2:
+      developmen<span class="hljs-variable">t:</span>
+        clientId:
+          $<span class="hljs-keyword">en</span><span class="hljs-variable">v:</span> AUTH_OAUTH2_CLIENT_ID
+        clientSecre<span class="hljs-variable">t:</span>
+          $<span class="hljs-keyword">en</span><span class="hljs-variable">v:</span> AUTH_OAUTH2_CLIENT_SECRET
+        authorizationUr<span class="hljs-variable">l:</span>
+          $<span class="hljs-keyword">en</span><span class="hljs-variable">v:</span> AUTH_OAUTH2_AUTH_URL
+        tokenUr<span class="hljs-variable">l:</span>
+          $<span class="hljs-keyword">en</span><span class="hljs-variable">v:</span> AUTH_OAUTH2_TOKEN_URL
+        scope:
+          $<span class="hljs-keyword">en</span><span class="hljs-variable">v:</span> AUTH_OAUTH2_SCOPE
     sam<span class="hljs-variable">l:</span>
       entryPoin<span class="hljs-variable">t:</span>
         $<span class="hljs-keyword">en</span><span class="hljs-variable">v:</span> AUTH_SAML_ENTRY_POINT

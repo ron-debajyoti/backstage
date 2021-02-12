@@ -64,9 +64,9 @@
             });
         </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/backstage/backstage/edit/master/docs/features/search/architecture.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 id="__docusaurus" class="postHeaderTitle">Search Architecture</h1></header><article><div><span><h1><a class="anchor" aria-hidden="true" id="search-architecture"></a><a href="#search-architecture" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Search Architecture</h1>
 <blockquote>
-<p><em>This is a proposed architecture which has not been implemented yet. We are
-still looking for feedback to improve the architecture to fit your use-case,
-see <a href="https://github.com/backstage/backstage/issues/4078">this open issue</a>.</em></p>
+<p><em>This is a proposed architecture which has not been implemented yet. Find our
+milestones to follow our progress on the
+<a href="/docs/features/search/search-overview#project-roadmap">Search Roadmap</a>.</em></p>
 </blockquote>
 <p>Below you can explore the Search Architecture. Our aim with this architecture is
 to support a wide variety of search engines, while providing a simple developer
@@ -76,7 +76,10 @@ Backstage end-users.</p>
 <p>At a base-level, we want to support the following:</p>
 <ul>
 <li>We aim to enable the capability to search across the entire Backstage
-ecosystem by decoupling search from content management.</li>
+ecosystem including, but not limited to, entities in the software catalog.
+Searchable content won't be required to relate directly to the software
+catalog, but by convention, we may encourage loose relationships using
+well-known field names or attributes.</li>
 <li>We aim to enable the capability to deploy Backstage using any search engine,
 by providing an integration and translation layer between the core search
 plugin and search engine specific logic that can be extended for different
@@ -85,14 +88,20 @@ endpoint with a custom endpoint for simpler customization.</li>
 </ul>
 <p>More advanced use-cases we hope to support with this architecture include:</p>
 <ul>
-<li>It should be easy for any plugin to expose new content to search. (e.g. entity
-metadata, documentation from TechDocs)</li>
-<li>It should be easy for any plugin to append relevant metadata to existing
+<li>It should be possible for any plugin to expose new content to search. (e.g.
+entity metadata, documentation from TechDocs)</li>
+<li>It should be possible for any plugin to append relevant metadata to existing
 content in search. (e.g. location (path) for TechDocs page)</li>
-<li>It should be easy to refine search queries (e.g. ranking, scoring, etc.)</li>
-<li>It should be easy to customize the search UI</li>
-<li>It should be easy to add search functionality to any Backstage plugin or
+<li>It should be possible to refine search queries (e.g. ranking, scoring, etc.)</li>
+<li>It should be possible to customize the search UI</li>
+<li>It should be possible to add search functionality to any Backstage plugin or
 deployment</li>
+</ul>
+<p>Architecture non-goals:</p>
+<ul>
+<li>At this time, we do not intend to directly support event-driven or incremental
+index management. Instead, we'll be focused on scheduled, bulk index
+management.</li>
 </ul>
 </span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/features/search/search-overview"><span class="arrow-prev">← </span><span>Overview</span></a><a class="docs-next button" href="/docs/features/techdocs/techdocs-overview"><span>Overview</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><div class="footer-title"><a href="/"><h2 class="footerLogo"></h2></a></div><div><h5>Docs</h5><a href="/docs/overview/what-is-backstage">What is Backstage?</a><a href="/docs/getting-started/">Getting started</a><a href="/docs/features/software-catalog/software-catalog-overview">Service Catalog</a><a href="/docs/plugins/create-a-plugin">Create a Plugin</a><a href="/docs/dls/design">Designing for Backstage</a></div><div><h5>Community</h5><a href="https://discord.gg/MUpMjP2">Support chatroom</a><a href="https://github.com/backstage/backstage/blob/master/CONTRIBUTING.md">Contributing</a><a href="https://mailchi.mp/spotify/backstage-community">Subscribe to our newsletter</a><a href="https://www.cncf.io/sandbox-projects/">CNCF Sandbox</a></div><div><h5>More</h5><a href="https://spotify.github.io/">Open Source @ Spotify</a><a href="https://engineering.atspotify.com/">Spotify Engineering Blog</a><a href="https://developer.spotify.com/">Spotify for Developers</a><a href="https://github.com/backstage/backstage">GitHub</a><a class="github-button" href="https://github.com/backstage/backstage" data-icon="octicon-star" data-count-href="/backstage/backstage/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a><div class="social"><a href="https://twitter.com/SpotifyEng" class="twitter-follow-button">Follow @SpotifyEng</a></div></div></section><p style="text-align:center"><a href="https://spotify.github.io">Made with ❤️  at Spotify</a></p><p class="copyright">Copyright © 2021 Backstage Project Authors. All rights reserved. The Linux Foundation has registered trademarks and uses trademarks. For a list of trademarks of The Linux Foundation, please see our Trademark Usage page: https://www.linuxfoundation.org/trademark-usage</p></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script><script>
                 document.addEventListener('keyup', function(e) {
